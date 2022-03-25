@@ -1,0 +1,32 @@
+bin/spark-submit \
+--class org.apache.spark.examples.SparkPi \
+--master spark://master:7077 \
+--executor-memory 1G \
+--total-executor-cores 2 \
+/home/liao/moludes/spark-2.2.2-bin-hadoop2.7/examples/jars/spark-examples_2.11-2.2.2.jar \
+100
+
+
+
+bin/spark-submit \
+--class org.apache.spark.examples.SparkPi \
+--master yarn \
+--deploy-mode client \
+/home/liao/moludes/spark-2.2.2-bin-hadoop2.7/examples/jars/spark-examples_2.11-2.2.2.jar \
+100
+
+
+
+sc.textFile("hdfs://master:8020/name.txt").flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_).saveAsTextFile("hdfs://master:8020/sparkout")
+
+
+
+
+
+
+bin/spark-submit \
+--class SparkCore01 \
+--master spark://master:7077 \
+--executor-memory 1G \
+--total-executor-cores 2 \
+/home/liao/moludes/bd8sparkday01-1.0-SNAPSHOT.jar \
